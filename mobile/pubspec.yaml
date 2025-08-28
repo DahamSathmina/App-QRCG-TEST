@@ -1,0 +1,12 @@
+name: netlab_mobile
+description: NETLAB mobile app
+publish_to: "none"
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  socket_io_client: ^2.0.0
+  dio: ^5.0.0
