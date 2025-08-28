@@ -1,9 +1,6 @@
 from kivy.uix.screenmanager import Screen
-from kivy.app import App
+from main import MyApp
 
 class SettingsScreen(Screen):
     def toggle_theme(self):
-        App.get_running_app().toggle_theme()
-
-    def go_home(self):
-        self.manager.current = "home"
+        MyApp.get_running_app().toggle_theme()

@@ -3,7 +3,7 @@ import sqlite3
 
 class RegisterScreen(Screen):
     def register_user(self, username, password):
-        if username == "" or password == "":
+        if username.strip() == "" or password.strip() == "":
             self.ids.register_label.text = "Fields cannot be empty!"
             return
         conn = sqlite3.connect("data/app_data.db")

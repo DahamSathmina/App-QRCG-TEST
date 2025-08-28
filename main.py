@@ -8,7 +8,7 @@ from screens.profile import ProfileScreen
 import sqlite3
 import os
 
-# Create data directory and database if not exist
+# Database setup
 if not os.path.exists("data"):
     os.makedirs("data")
 
@@ -25,11 +25,6 @@ CREATE TABLE IF NOT EXISTS users (
     avatar TEXT
 )
 ''')
-
-# Default user
-cursor.execute("SELECT * FROM users WHERE username='admin'")
-if not cursor.fetchone():
-    cursor.execute("INSERT INTO users (username,password) VALUES (?,?)",("admin","admin"))
 
 # Settings table
 cursor.execute('''
@@ -50,13 +45,15 @@ CREATE TABLE IF NOT EXISTS tasks (
     title TEXT,
     description TEXT,
     completed INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY(user_id) REFERENCES users(id)
 )
 ''')
 conn.commit()
 conn.close()
 
-# Screen Manager
+# Screen manager
 sm = ScreenManager()
 sm.add_widget(LoginScreen(name="login"))
 sm.add_widget(RegisterScreen(name="register"))
@@ -66,10 +63,10 @@ sm.add_widget(ProfileScreen(name="profile"))
 
 class MyApp(MDApp):
     def build(self):
-        self.load_theme_from_db()
+        self.load_theme()
         return sm
 
-    def load_theme_from_db(self):
+    def load_theme(self):
         conn = sqlite3.connect("data/app_data.db")
         cursor = conn.cursor()
         cursor.execute("SELECT theme FROM settings LIMIT 1")

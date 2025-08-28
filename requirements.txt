@@ -1,3 +1,4 @@
-kivy==2.2.1
-kivymd==1.1.1
+kivy==2.3.1
+kivymd==2.0.1.dev0
 plyer==2.0.0
+requests==2.31.0

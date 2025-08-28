@@ -1,41 +1,19 @@
 <HomeScreen>:
         MDBoxLayout:
         orientation: "vertical"
-        padding: 10
-        spacing: 10
-
-        MDTabs:
-            id: tabs
-            on_tab_switch: app.root.ids.tabs.on_tab_switch(*args)
-
-            Tab:
-                title: "Dashboard"
-                MDLabel:
-                    text: "Welcome Home!"
-                    halign: "center"
-
-            Tab:
-                title: "Tasks"
-                MDBoxLayout:
-                    orientation: "vertical"
-                    spacing: 10
-                    MDTextField:
-                        id: task_title
-                        hint_text: "Task Title"
-                    MDTextField:
-                        id: task_desc
-                        hint_text: "Task Description"
-                    MDRaisedButton:
-                        text: "Add Task"
-                        pos_hint: {"center_x":0.5}
-                        on_release: root.add_task(task_title.text, task_desc.text)
-                    ScrollView:
-                        MDList:
-                            id: task_list
-
-            Tab:
-                title: "Profile"
-                MDRaisedButton:
-                    text: "Go to Profile"
-                    pos_hint: {"center_x":0.5}
-                    on_release: root.go_profile()
+        MDToolbar:
+            title: "Home"
+            right_action_items: [["cog", lambda x: root.go_settings()], ["account", lambda x: root.go_profile()]]
+        ScrollView:
+            MDList:
+                id: task_list
+        MDBoxLayout:
+            size_hint_y: None
+            height: dp(60)
+            spacing: dp(10)
+            MDTextField:
+                id: task_title
+                hint_text: "Task title"
+            MDRaisedButton:
+                text: "Add"
+                on_release: root.add_task(task_title.text,"")

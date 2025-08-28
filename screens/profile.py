@@ -16,9 +16,7 @@ class ProfileScreen(Screen):
         username = self.manager.get_screen("login").ids.username.text
         conn = sqlite3.connect("data/app_data.db")
         cursor = conn.cursor()
-        cursor.execute("UPDATE users SET email=? WHERE username=?",(email, username))
+        cursor.execute("UPDATE users SET email=? WHERE username=?",(email,username))
         conn.commit()
         conn.close()
         self.ids.status.text = "Profile updated!"
-
-
