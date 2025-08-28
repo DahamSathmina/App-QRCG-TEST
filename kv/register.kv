@@ -1,0 +1,30 @@
+<RegisterScreen>:
+        MDBoxLayout:
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+
+        MDLabel:
+            id: register_label
+            text: "Register"
+            halign: "center"
+            font_style: "H4"
+
+        MDTextField:
+            id: username
+            hint_text: "Username"
+
+        MDTextField:
+            id: password
+            hint_text: "Password"
+            password: True
+
+        MDRaisedButton:
+            text: "Register"
+            pos_hint: {"center_x": 0.5}
+            on_release: root.register_user(username.text,password.text)
+
+        MDRaisedButton:
+            text: "Back to Login"
+            pos_hint: {"center_x":0.5}
+            on_release: app.root.current = "login"

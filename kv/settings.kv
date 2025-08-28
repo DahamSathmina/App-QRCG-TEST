@@ -1,0 +1,20 @@
+<SettingsScreen>:
+        MDBoxLayout:
+        orientation: "vertical"
+        padding: 50
+        spacing: 20
+
+        MDLabel:
+            text: "Settings"
+            halign: "center"
+            font_style: "H4"
+
+        MDRaisedButton:
+            text: "Toggle Theme"
+            pos_hint: {"center_x":0.5}
+            on_release: root.toggle_theme()
+
+        MDRaisedButton:
+            text: "Back to Home"
+            pos_hint: {"center_x":0.5}
+            on_release: root.go_home()

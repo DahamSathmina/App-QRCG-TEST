@@ -1,6 +1,0 @@
-customtkinter
-flask
-flask-socketio
-eventlet
-pillow
-werkzeug
